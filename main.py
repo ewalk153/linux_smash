@@ -51,6 +51,7 @@ class App(QMainWindow):
         self.initUI()
 
         self.sounds = soundbank
+        self.sounds.setup()
 
         self.setStyleSheet("QLabel {font: 30pt Helvetica}")
     
@@ -60,11 +61,13 @@ class App(QMainWindow):
         self.show()
 
 class SoundBank():
-    # calling this initialization here seems to bork
-    # things with QEventLoop: Cannot be used without QApplication
-    NOTES = {
-        'A': QSound("sounds/A.wav")
-    }
+    NOTES = {}
+
+    # defer setup until in a QEventLoop 
+    def setup(self):
+        self.NOTES = {
+            'A': QSound("sounds/A.wav")
+        }
 
     def play(self, letter):
         if letter in self.NOTES:
