@@ -23,6 +23,7 @@ class App(QMainWindow):
 
     def showChar(self, char):
         label = QLabel(char, self)
+        label.resize(512, 512)
         label.move(
             random.randint(0, self.width),
             random.randint(0, self.height))
@@ -53,7 +54,7 @@ class App(QMainWindow):
         self.sounds = soundbank
         self.sounds.setup()
 
-        self.setStyleSheet("QLabel {font: 30pt Helvetica}")
+        self.setStyleSheet("QLabel {font: 120pt Helvetica}")
     
     def initUI(self):
         self.setWindowTitle(self.title)
