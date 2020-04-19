@@ -19,12 +19,12 @@ class App(QMainWindow):
                 self.showChar(char)
 
     def showable(self, key):
-        return (key >= ord('A') and key <= ord('Z')) or (key >= ord('A') and key <= ord('Z'))
+        return (key >= ord('A') and key <= ord('Z')) or (key >= ord('0') and key <= ord('9'))
 
     def showChar(self, char):
         color = random.choice(['red', 'green', 'blue', 'magenta', 'purple', 'green'])
         label = QLabel(char, self)
-        label.resize(512, 512)
+        label.resize(120, 120)
         label.move(
             random.randint(0, self.width),
             random.randint(0, self.height))
