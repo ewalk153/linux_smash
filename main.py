@@ -1,12 +1,10 @@
 import sys, random
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QLabel
+from PyQt5.QtWidgets import QApplication, QDesktopWidget, QWidget, QMainWindow, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
 from PyQt5.QtCore import Qt
 
 class App(QMainWindow):
-    WIDTH = 440
-    HEIGHT = 280
     MAX_LETTERS = 5
     labels = []
 
@@ -43,13 +41,16 @@ class App(QMainWindow):
         self.title = 'PyQt absolute positioning - pythonspot.com'
         self.left = 10
         self.top = 10
-        self.width = self.WIDTH
-        self.height = self.HEIGHT
+        screen = QDesktopWidget().screenGeometry()
+        
+        self.width = screen.width()
+        self.height = screen.height()
+        # self.setGeometry(0, 0, screen.width(), screen.height())
+
         self.showFullScreen()
         self.initUI()
 
         self.sounds = soundbank
-
 
         self.setStyleSheet("QLabel {font: 30pt Helvetica}")
     
