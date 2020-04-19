@@ -69,7 +69,8 @@ class SoundBank():
     # defer setup until in a QEventLoop 
     def setup(self):
         self.NOTES = {
-            'A': QSound("sounds/A.wav")
+            'A': QSound("sounds/A.wav"),
+            'H': QSound("sounds/H.wav"),
         }
 
     def play(self, letter):
