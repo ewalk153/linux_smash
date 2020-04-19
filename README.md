@@ -1,3 +1,9 @@
+## Linux Smash
+
+A simple app to play sounds and show letters when the keyboard is used.
+
+!(screenshot.png)
+
 setup:
 ```bash
 brew install pyqt
