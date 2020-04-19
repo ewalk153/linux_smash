@@ -22,11 +22,13 @@ class App(QMainWindow):
         return (key >= ord('A') and key <= ord('Z')) or (key >= ord('A') and key <= ord('Z'))
 
     def showChar(self, char):
+        color = random.choice(['red', 'green', 'blue', 'magenta', 'purple', 'green'])
         label = QLabel(char, self)
         label.resize(512, 512)
         label.move(
             random.randint(0, self.width),
             random.randint(0, self.height))
+        label.setStyleSheet('color: ' + color)
         label.show()
 
         self.labels.append(label)
