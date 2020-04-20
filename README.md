@@ -2,7 +2,7 @@
 
 A simple app to play sounds and show letters when the keyboard is used.
 
-!(screenshot.png)
+![screenshot](https://raw.githubusercontent.com/ewalk153/linux_smash/master/screenshot.png)
 
 setup:
 ```bash
