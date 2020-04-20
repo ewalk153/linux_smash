@@ -4,7 +4,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
 from PyQt5.QtCore import Qt
 
-class App(QMainWindow):
+class SmashApp(QMainWindow):
     MAX_LETTERS = 5
     labels = []
 
@@ -80,5 +80,5 @@ class SoundBank():
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     sounds = SoundBank()
-    ex = App(sounds)
+    ex = SmashApp(sounds)
     sys.exit(app.exec_())
