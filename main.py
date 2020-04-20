@@ -64,14 +64,13 @@ class SmashApp(QMainWindow):
         self.show()
 
 class SoundBank():
+    LETTERS = ['A', 'H']
     NOTES = {}
 
     # defer setup until in a QEventLoop 
     def setup(self):
-        self.NOTES = {
-            'A': QSound("sounds/A.wav"),
-            'H': QSound("sounds/H.wav"),
-        }
+        for letter in self.LETTERS:
+            self.NOTES[letter] = QSound("sounds/" + letter + ".wav")
 
     def play(self, letter):
         if letter in self.NOTES:
