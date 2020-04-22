@@ -1,4 +1,4 @@
-import sys, random
+import sys, random, string
 from PyQt5.QtWidgets import QApplication, QDesktopWidget, QWidget, QMainWindow, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
@@ -64,7 +64,7 @@ class SmashApp(QMainWindow):
         self.show()
 
 class SoundBank():
-    LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    LETTERS = list(string.ascii_uppercase)
     NOTES = {}
 
     # defer setup until in a QEventLoop 
