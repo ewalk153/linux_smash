@@ -41,7 +41,7 @@ class SmashApp(QMainWindow):
 
     def __init__(self, soundbank):
         super().__init__()
-        self.title = 'PyQt absolute positioning - pythonspot.com'
+        self.title = 'Linux Smash'
         self.left = 10
         self.top = 10
         screen = QDesktopWidget().screenGeometry()
@@ -64,7 +64,7 @@ class SmashApp(QMainWindow):
         self.show()
 
 class SoundBank():
-    LETTERS = ['A', 'H']
+    LETTERS = ['A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J']
     NOTES = {}
 
     # defer setup until in a QEventLoop 
