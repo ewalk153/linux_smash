@@ -4,6 +4,14 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
 from PyQt5.QtCore import Qt
 
+
+def debug_trace():
+  '''Set a tracepoint in the Python debugger that works with Qt'''
+  from PyQt5.QtCore import pyqtRemoveInputHook
+  from pdb import set_trace
+  pyqtRemoveInputHook()
+  set_trace()
+
 class SmashApp(QMainWindow):
     MAX_LETTERS = 5
     labels = []
@@ -34,10 +42,20 @@ class SmashApp(QMainWindow):
         self.labels.append(label)
         self.sounds.play(char)
         self.show()
+
+        self.checkForExitWord()
         
         if len(self.labels) > self.MAX_LETTERS:
             l = self.labels.pop(0)
             l.deleteLater()
+
+    def checkForExitWord(self):
+        word = []
+        for l in self.labels:
+            word.append(l.text())
+
+            if word == ["Q", "U", "I", "T"]:
+                sys.exit(0)
 
     def __init__(self, soundbank):
         super().__init__()
@@ -64,7 +82,7 @@ class SmashApp(QMainWindow):
         self.show()
 
 class SoundBank():
-    LETTERS = list(string.ascii_uppercase)
+    LETTERS = list(string.ascii_uppercase) + list(string.digits)
     NOTES = {}
 
     # defer setup until in a QEventLoop 
