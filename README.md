@@ -20,7 +20,6 @@ linux setup:
 ```bash
 pip install -Ur requirements.txt
 sudo apt-get install qt5-default pyqt5-dev pyqt5-dev-tools pulseaudio
-pip install PyQt-builder
 ```
 
 and to run:
