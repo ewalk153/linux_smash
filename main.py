@@ -1,9 +1,12 @@
 import sys, random, string
+from os import listdir
+from os.path import isfile, join
+from collections import defaultdict
+
 from PyQt5.QtWidgets import QApplication, QDesktopWidget, QWidget, QMainWindow, QLabel
 from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
 from PyQt5.QtCore import Qt
-
 
 def debug_trace():
   '''Set a tracepoint in the Python debugger that works with Qt'''
@@ -83,16 +86,19 @@ class SmashApp(QMainWindow):
 
 class SoundBank():
     LETTERS = list(string.ascii_uppercase) + list(string.digits)
-    NOTES = {}
+    NOTES = defaultdict(list)
 
     # defer setup until in a QEventLoop 
     def setup(self):
-        for letter in self.LETTERS:
-            self.NOTES[letter] = QSound("sounds/" + letter + ".wav")
+        path = "sounds/"
+        onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
+        for file in onlyfiles:
+            letter = file[0].upper()
+            self.NOTES[letter].append(QSound(path + file))
 
     def play(self, letter):
         if letter in self.NOTES:
-            self.NOTES[letter].play()
+            random.choice(self.NOTES[letter]).play()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
