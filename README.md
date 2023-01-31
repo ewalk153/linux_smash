@@ -19,7 +19,7 @@ source venv/bin/activate
 linux setup:
 ```bash
 pip install -Ur requirements.txt
-sudo apt-get install qt5-default pyqt5-dev pyqt5-dev-tools pulseaudio
+sudo apt-get install qt6-base-dev pulseaudio
 ```
 
 and to run:
