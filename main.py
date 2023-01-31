@@ -3,14 +3,14 @@ from os import listdir
 from os.path import isfile, join
 from collections import defaultdict
 
-from PyQt5.QtWidgets import QApplication, QDesktopWidget, QWidget, QMainWindow, QLabel
-from PyQt5.QtGui import QIcon
-from PyQt5.QtMultimedia import QSound
-from PyQt5.QtCore import Qt
+from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QLabel
+from PyQt6.QtGui import QIcon, QGuiApplication
+from PyQt6.QtCore import Qt, QUrl
+from PyQt6.QtMultimedia import QSoundEffect
 
 def debug_trace():
   '''Set a tracepoint in the Python debugger that works with Qt'''
-  from PyQt5.QtCore import pyqtRemoveInputHook
+  from PyQt6.QtCore import pyqtRemoveInputHook
   from pdb import set_trace
   pyqtRemoveInputHook()
   set_trace()
@@ -21,7 +21,7 @@ class SmashApp(QMainWindow):
 
     def keyPressEvent(self, event):
         key = event.key()
-        if key == Qt.Key_Return:
+        if key == Qt.Key.Key_Return:
             print('return key pressed')
         else:
             if self.showable(key):
@@ -65,7 +65,7 @@ class SmashApp(QMainWindow):
         self.title = 'Linux Smash'
         self.left = 10
         self.top = 10
-        screen = QDesktopWidget().screenGeometry()
+        screen = QGuiApplication.primaryScreen().availableGeometry()
         
         self.width = screen.width()
         self.height = screen.height()
@@ -94,14 +94,19 @@ class SoundBank():
         onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
         for file in onlyfiles:
             letter = file[0].upper()
-            self.NOTES[letter].append(QSound(path + file))
+            self.NOTES[letter].append(new_sound(path + file))
 
     def play(self, letter):
         if letter in self.NOTES:
             random.choice(self.NOTES[letter]).play()
 
+def new_sound(local_file):
+    effect = QSoundEffect()
+    effect.setSource(QUrl.fromLocalFile(local_file))
+    return effect
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     sounds = SoundBank()
     ex = SmashApp(sounds)
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
