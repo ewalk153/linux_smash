@@ -57,7 +57,7 @@ class SmashApp(QMainWindow):
         for l in self.labels:
             word.append(l.text())
 
-            if word == ["Q", "U", "I", "T"]:
+            if word[-4:] == ["Q", "U", "I", "T"]:
                 sys.exit(0)
 
     def __init__(self, soundbank):
