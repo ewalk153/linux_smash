@@ -1,6 +1,6 @@
 import sys, random, string
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, splitext
 from collections import defaultdict
 
 from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QLabel
@@ -91,7 +91,7 @@ class SoundBank():
     # defer setup until in a QEventLoop 
     def setup(self):
         path = "sounds/"
-        onlyfiles = [f for f in listdir(path) if isfile(join(path, f))]
+        onlyfiles = [f for f in listdir(path) if isfile(join(path, f)) and splitext(f)[1] == ".wav"]
         for file in onlyfiles:
             letter = file[0].upper()
             self.NOTES[letter].append(new_sound(path + file))
