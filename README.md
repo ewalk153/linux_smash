@@ -26,3 +26,10 @@ and to run:
 ```bash
 python3 main.py
 ```
+
+### Adding new audio files
+
+I use the mac Memo app to record audio files, which creates a m4a file. To convert this to a wave file, use the following ffmpeg command:
+```
+ffmpeg -i inputFilename.m4a OutputFilename.wav
+```
